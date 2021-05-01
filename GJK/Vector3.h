@@ -8,6 +8,10 @@
 #ifndef Vector3_h
 #define Vector3_h
 
+#define ORIGIN (Vector3<T>({0,0,0}))
+
+#include <cmath>
+
 template <class T>
 class Vector3 {
     T _x;
@@ -87,6 +91,8 @@ public:
     
 };
 
+
+
 template <class T>
 Vector3<T> operator *(const T& f, const Vector3<T>& v1) {
     return v1 * f;
@@ -95,6 +101,18 @@ Vector3<T> operator *(const T& f, const Vector3<T>& v1) {
 template <class T>
 T dot(const Vector3<T>& v1, const Vector3<T>& v2) {
     return v1.x()*v2.x() + v1.y()*v2.y() + v1.z()*v2.z();
+}
+
+template <class T>
+Vector3<T> cross(Vector3<T> v1, Vector3<T> v2) {
+    return Vector3<T>(v1.y()*v2.z() - v1.z()*v2.y(), v1.z()*v2.x() - v1.x()*v2.z(), v1.x()*v2.y() - v1.y()*v2.x());
+    
+}
+
+template <class T>
+Vector3<T> tripProd(Vector3<T> v1, Vector3<T> v2, Vector3<T> v3) {
+    auto x = cross(cross(v1,v2), v3);
+    return x;
 }
 
 #endif /* Vector3_h */
