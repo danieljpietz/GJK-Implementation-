@@ -91,12 +91,12 @@ bool triangleCase(std::vector<Vector3<T>>& simplex, Vector3<T>& d) {
     auto ACPerp = tripProd(AB, AC, AC);
     
     if (dot(ABPerp, AO) > 0) {
-        simplex.erase(simplex.begin());
+        simplex.erase(simplex.end() - 3);
         d = ABPerp;
         return false;
     }
     else if (dot(ACPerp, AO) > 0) {
-        simplex.erase(simplex.begin() + 1);
+        simplex.erase(simplex.end() - 2);
         d = ACPerp;
         return false;
     }
